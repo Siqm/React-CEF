@@ -17,19 +17,32 @@ export function isEnvBrowser() {
 export default function App() {
 
   const [visible, setVisible] = useState(false);
+  const [requestedRoute, setRequestedRoute] = useState(null);
+
+
 
   useEffect(() => {
-    if (isEnvBrowser) {
+    console.log('visible', visible);
+    if (isEnvBrowser()) {
       setVisible(true)
+      setRequestedRoute(null)
     }
-  }, [visible])
+  }, [])
 
-  return (
-    <div className="App">
+  if (visible) {
+    return (
+      <div className="App">
       <header className="App-header">
         <h1>Instalando projeto</h1>
       </header>
     </div>
-  );
+    )
+  } else {
+    return (
+      <>
+        <h1>Loading</h1>
+      </>
+    )
+  }
 }
 
